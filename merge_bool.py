@@ -1,14 +1,16 @@
-from . import merge_tables
+from merge_base import TableMerger
 
-class BoolMerger(merge_tables.TableMerger):
-    def __init__(self, input_file_name, tables_list):
-        super().__init__(input_file_name, tables_list)
+class BoolMerger(TableMerger):
+    def __init__(self, input_file_name, output_file_name):
+        super().__init__(input_file_name, output_file_name)
 
-    def merge_tables(self, input_table, new_values_dict, header):
-        for row in input_table:
-            if row[0] in new_values_dict:
-                value = "YES" if new_values_dict[row[0]] == "true" else "NO"
+    def merge_tables(self, new_table):
+        self.new_table_dict, self.new_table_header = self.generate_dict(new_table)
+        for row in self.input_reader:
+            if row[0] in self.new_table_dict:
+                value = "YES" if self.new_table_dict[row[0]] == "true" else "NO"
                 row.append(value)
             else:
-                row.append(header)
+                row.append(self.new_table_header)
             self.output_writer.writerow(row)
+        
