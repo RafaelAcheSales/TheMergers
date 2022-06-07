@@ -14,7 +14,6 @@ class TerminatedMerger(TableMerger):
         headers_list = []        
         for row in csv_reader:
             if row[1] not in headers_list:
-                print(row[1] + " not in " + str(headers_list))
                 headers_list.append(row[1])   
         headers_list = [value.lower() for value in headers_list]
         headers_list.pop(0)
@@ -33,7 +32,6 @@ class TerminatedMerger(TableMerger):
 
     # Generate a dict with all terminated status as 'NO"
     def generate_dict_with_false(self):
-        print(len(self.my_headers))
         for row in self.input_reader:
             self.result_dict[row[0]] = ['NO' for i in range(len(self.my_headers))]
 
@@ -42,7 +40,6 @@ class TerminatedMerger(TableMerger):
         with open(table_name, newline='') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',', quotechar=' ')
             next(csv_reader)
-            print(len(self.my_headers))
             # If royalty type is terminated, update status, do nothing otherwise
             for row in csv_reader:
                 try:

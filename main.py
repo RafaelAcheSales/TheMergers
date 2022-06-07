@@ -1,11 +1,13 @@
 import sys
 import csv
+import os
 
 from merge_bool import BoolMerger
 from merge_terminated import TerminatedMerger
 from merge_base import TableMerger
 
 OUTPUT_FILE_NAME = 'output'
+INPUT_FILE_NAME = 'input'
 
 TYPES_OF_MERGE = {
     "is_active": BoolMerger,
@@ -31,7 +33,7 @@ def read_header(table):
 # add the new column in agreement with the TYPES_OF_MERGE
 def merge_specific_collumn(collumn, table_name, index):
     # creates temporary files for each iteration of the merge
-    file_name = sys.argv[1] if index == 0 else (OUTPUT_FILE_NAME+str(index)+'.csv')
+    file_name = INPUT_FILE_NAME if index == 0 else (OUTPUT_FILE_NAME+str(index)+'.csv')
     output_file_name = OUTPUT_FILE_NAME+str(index+1)+'.csv'
     
     # merges the new table with the most recent output file
@@ -49,15 +51,17 @@ for i, arg in enumerate(sys.argv):
         continue
     elif i == 1:
         # gets name of source input file
-        input_file_name = arg
+        INPUT_FILE_NAME = 'tables_to_merge/' + arg + '.csv'
     else:
         # gets name of the tables to be merged into source input file
-        new_tables_list.append(arg)
+        new_tables_list.append('tables_to_merge/' + arg + '.csv')
 
 # merge all the tables sent by argv in sequence
-print("ASDADWDWA")
-print(len(new_tables_list))
 for i in range(len(new_tables_list)):
     analyse_new_table_and_merge(new_tables_list[i], i)
+    try:
+        os.remove(OUTPUT_FILE_NAME+str(i)+'.csv')
+    except:
+        pass
 
 
