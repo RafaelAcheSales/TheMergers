@@ -1,6 +1,6 @@
 from __future__ import print_function
 from unittest import result
-from merge_base import TableMerger
+from mergers.merge_base  import TableMerger
 import csv
 
 #Used to merge tables with the values of terminated for all royalty types

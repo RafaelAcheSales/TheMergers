@@ -2,9 +2,9 @@ import sys
 import csv
 import os
 
-from merge_bool import BoolMerger
-from merge_terminated import TerminatedMerger
-from merge_base import TableMerger
+from mergers.merge_bool import BoolMerger
+from mergers.merge_terminated import TerminatedMerger
+from mergers.merge_base import TableMerger
 
 OUTPUT_FILE_NAME = 'output'
 INPUT_FILE_NAME = 'input'

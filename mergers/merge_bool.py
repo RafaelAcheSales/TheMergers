@@ -1,4 +1,4 @@
-from merge_base import TableMerger
+from mergers.merge_base import TableMerger
 
 #Used to merge tables with boolean values
 class BoolMerger(TableMerger):
