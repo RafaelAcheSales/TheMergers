@@ -7,11 +7,11 @@ python main.py input_file_1 input_file_2 input_file_3 ...
 ```
 (note: you don't need to use .csv suffix in the args, just the name of the input files)
 ```
-Main_folder<br>
-├── tables_to_merge<br>
-│   ├── input_file_1.csv<br>
-│   ├── input_file_2.csv<br>
-│   ├── input_file_3.csv<b
+Main_folder
+├── tables_to_merge
+│   ├── input_file_1.csv
+│   ├── input_file_2.csv
+│   ├── input_file_3.csv
 │   └── ...
 ├── mergers
 │   ├── merge_base.py
