@@ -8,17 +8,17 @@ python main.py input_file_1 input_file_2 input_file_3 ...
 (note: you don't need to use .csv suffix in the args, just the name of the input files)
 
 
-Main_folder
-    |
-    ----- to_be_merged
-    |           |
-    |           ---- input_file_1.csv
-    |           |
-    |           ---- input_file_2.csv
-    |           |
-    |           ---- input_file_3.csv
-    |
-    ----- main.py
+Main_folder<br>
+    |<br>
+    ----- to_be_merged<br>
+    |   |<br>
+    |   ---- input_file_1.csv<br>
+    |   |<br>
+    |   ---- input_file_2.csv<br>
+    |   |<br>
+    |   ---- input_file_3.csv<br>
+    |<br>
+    ----- main.py<br>
 
 # Input data
 Input data must be .csv files delimited with comma (",") and no quote char in order to work. All csv collums will be interpreted and the script will try to merge, so the best pratice is to have a csv file with only PK and the to-be-merge collums by removing the unwanted collums from the inputs.
