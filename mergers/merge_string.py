@@ -1,7 +1,6 @@
 from mergers.merge_base import TableMerger
 
-#Used to merge tables with boolean values
-class BoolMerger(TableMerger):
+class StringMerger(TableMerger):
     def __init__(self, input_file_name, output_file_name, pk_index):
         super().__init__(input_file_name, output_file_name, pk_index)
 
@@ -10,9 +9,9 @@ class BoolMerger(TableMerger):
 
         #For each user_id in the input file, merge the self.new_table_dict['user_id'] value
         for row in self.input_reader:
-            if row[0] in self.new_table_dict:
+            if row[self.pk_index] in self.new_table_dict:
                 #Merge the input user_id's values with the to-be-added user_id's values
-                value = "YES" if self.new_table_dict[row[0]] == "true" else "NO"
+                value = self.new_table_dict[row[self.pk_index]]
                 row.append(value)
             else:
                 #Merge the input header with the to-be-added header
@@ -20,4 +19,3 @@ class BoolMerger(TableMerger):
             
             # Write the merged row of info in the output file
             self.output_writer.writerow(row)
-        

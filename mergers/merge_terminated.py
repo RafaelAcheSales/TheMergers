@@ -5,8 +5,8 @@ import csv
 
 #Used to merge tables with the values of terminated for all royalty types
 class TerminatedMerger(TableMerger):
-    def __init__(self, input_file_name, output_file_name):        
-        super().__init__(input_file_name, output_file_name)
+    def __init__(self, input_file_name, output_file_name, pk_index):        
+        super().__init__(input_file_name, output_file_name, pk_index)
         self.result_dict = {}
 
     #get all royalty_types
@@ -21,7 +21,7 @@ class TerminatedMerger(TableMerger):
     # Execute the merge
     def merge_tables(self, table_name):
         # Go through each table and populate the dict with the terminated status
-        with open(table_name, newline='') as csv_file:
+        with open(table_name, newline='', encoding='utf8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',', quotechar=' ')
             self.my_headers = self.get_terminated_enum(csv_reader)
         self.generate_dict_with_false()
@@ -37,7 +37,7 @@ class TerminatedMerger(TableMerger):
 
     # Check terminated status for each user_id and update status to 'YES' when a royalty type is terminated for that user_id
     def populate_dict(self, table_name):
-        with open(table_name, newline='') as csv_file:
+        with open(table_name, newline='', encoding='utf8') as csv_file:
             csv_reader = csv.reader(csv_file, delimiter=',', quotechar=' ')
             next(csv_reader)
             # If royalty type is terminated, update status, do nothing otherwise
